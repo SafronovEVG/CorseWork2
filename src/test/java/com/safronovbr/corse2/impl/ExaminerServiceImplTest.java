@@ -34,9 +34,9 @@ class ExaminerServiceImplTest {
 
     @Test
     public void test() {
-        List<Question> questions = examinerService.getQuestions(2);
-
         List<Question> questionList = List.of(questionModel, questionModel2);
+
+        List<Question> questions = examinerService.getQuestions(2);
 
         assertEquals(questionList,questions);
     }

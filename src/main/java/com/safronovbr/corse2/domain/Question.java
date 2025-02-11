@@ -11,11 +11,6 @@ public class Question {
         this.answer = answer;
     }
 
-    public Question(Question question) {
-        this.question = question.getQuestion();
-        this.answer = question.getAnswer();
-    }
-
     public String getQuestion() {
         return question;
     }

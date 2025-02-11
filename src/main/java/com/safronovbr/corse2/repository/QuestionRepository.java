@@ -11,9 +11,7 @@ public class QuestionRepository {
     private final List<Question> QUESTION_LIST = new ArrayList<>();
 
     public Question addQuestion(String question, String answer) {
-        Question questionModel = new Question(question, answer);
-        QUESTION_LIST.add(questionModel);
-        return questionModel;
+        return addQuestion(new Question(question, answer));
     }
 
     public Question addQuestion(Question question) {

@@ -2,6 +2,7 @@ package com.safronovbr.corse2.impl;
 
 import com.safronovbr.corse2.repository.QuestionRepository;
 import com.safronovbr.corse2.service.impl.MathQuestionServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -24,21 +25,24 @@ class MathQuestionServiceImplTest {
 
     public static Stream<Arguments> ArgumentsForRandomQuestion() {
         return Stream.of(
-                Arguments.of(0, 0, 0, "0"),
-                Arguments.of(1, 1, 1, "0"),
-                Arguments.of(2, 2, 2, "1"),
-                Arguments.of(3, 3, 3, "9")
+                Arguments.of(0, 0, 0, 0),
+                Arguments.of(1, 1, 1, 0),
+                Arguments.of(2, 2, 2, 1),
+                Arguments.of(3, 3, 3, 9)
         );
+    }
+
+    @BeforeEach
+    public void setUp() {
+        questionService = new MathQuestionServiceImpl(questionRepository);
     }
 
     @ParameterizedTest
     @MethodSource("ArgumentsForRandomQuestion")
-    public void getQu(Integer arg, Integer first, Integer last, String result) {
-        questionService = new MathQuestionServiceImpl(questionRepository);
-        String expected = result;
+    public void getQu(Integer arg, Integer first, Integer last, Integer result) {
+        Integer expected = result;
 
-        String actual = ReflectionTestUtils.invokeMethod(questionService, "getResult", arg, first, last)
-                .toString();
+        Integer actual = ReflectionTestUtils.invokeMethod(questionService, "getResult", arg, first, last);
 
         assertEquals(expected, actual);
     }

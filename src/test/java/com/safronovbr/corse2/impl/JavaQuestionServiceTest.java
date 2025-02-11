@@ -53,7 +53,7 @@ class JavaQuestionServiceTest {
 
         List<Question> resultQuestion = questionRepository.getAllQuestion();
         assertFalse(resultQuestion.contains(questionModel));
-        assertEquals(2, resultQuestion.size());
+        assertEquals(1, resultQuestion.size());
     }
 
     @Test

@@ -22,16 +22,15 @@ public class MathQuestionServiceImpl implements QuestionService {
 
     @Override
     public Question add(String question, String answer) {
-        Question questionModel = new Question(question, answer);
-        if (mathQuestionRepository.getAllQuestion().contains(questionModel)) {
-            throw new QuestionAddedException();
-        }
-        return mathQuestionRepository.addQuestion(questionModel);
+        return add(new Question(question, answer));
     }
 
     @Override
     public Question add(Question question) {
-        return new Question(question);
+        if (mathQuestionRepository.getAllQuestion().contains(question)) {
+            throw new QuestionAddedException();
+        }
+        return mathQuestionRepository.addQuestion(question);
     }
 
     @Override

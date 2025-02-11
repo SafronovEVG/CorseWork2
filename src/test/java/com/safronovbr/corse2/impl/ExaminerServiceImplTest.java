@@ -20,15 +20,15 @@ class ExaminerServiceImplTest {
     @Mock
     private QuestionService questionService;
 
-    Question questionModel;
-    Question questionModel2;
-    ExaminerService examinerService;
+    private Question questionModel;
+    private Question questionModel2;
+    private ExaminerService examinerService;
 
     @BeforeEach
     public void setQuestionService() {
         questionModel = new Question("Question", "Answer");
         questionModel2 = new Question("QuestionText", "AnswerText");
-        examinerService = new ExaminerServiceImpl(List.of(questionService,questionService));
+        examinerService = new ExaminerServiceImpl(List.of(questionService, questionService));
         when(questionService.getRandomQuestion()).thenReturn(questionModel).thenReturn(questionModel2);
     }
 
@@ -38,6 +38,6 @@ class ExaminerServiceImplTest {
 
         List<Question> questions = examinerService.getQuestions(2);
 
-        assertEquals(questionList,questions);
+        assertEquals(questionList, questions);
     }
 }
